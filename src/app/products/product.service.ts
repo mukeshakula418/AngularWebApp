@@ -1,17 +1,16 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, catchError, tap, throwError } from "rxjs";
+import {Observable, catchError, tap, throwError, of} from "rxjs";
 
 import { IProduct } from "./product";
-import {parseJson} from "@angular/cli/src/utilities/json-file";
-import {JsonPipe} from "@angular/common";
+import {NgForm} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private productUrl = 'http://localhost:3000/api/v1/webapp/allProducts';
-  // private productUrl = 'api/products/products.json';
+  public productUrl = 'http://localhost:3000/api/v1/webapp/getAllProducts';
+  public postProductUrl = 'http://localhost:3000/api/v1/webapp/saveProduct';
 
   constructor(private http: HttpClient) { }
 
@@ -22,15 +21,20 @@ export class ProductService {
     }
   };
 
+  getProductCodes():Observable<string[]> {
+    return of(['Tools', 'Utilities','Grocery','Others'])
+  }
+
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.productUrl, this.httpOptions).pipe(tap(data => console.log('All', JSON.stringify(data))),
-    // return this.http.get<IProduct[]>(this.productUrl, this.httpOptions).pipe(tap(data=> {Object.values(data)[0];}),
       catchError(this.handleError)
     )
   }
-  // getProducts(): Observable<IProduct[]> {
-  //     return this.http.get<IProduct[]>(this.productUrl, this.httpOptions)
-  // }
+
+  postProduct(iProduct: NgForm): Observable<IProduct> {
+    console.log('In post call', iProduct)
+    return this.http.post<IProduct>(this.postProductUrl,iProduct, this.httpOptions)
+  }
 
   private handleError(err: HttpErrorResponse) {
     // in a real world app, we may send the server to some remote logging infrastructure

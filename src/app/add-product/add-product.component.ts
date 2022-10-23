@@ -16,15 +16,8 @@ export class AddProductComponent implements OnInit {
   postErrorMessage = '';
   max = 5;
   isReadonly = false;
-  // releaseDate: Date;
-  overStar: number | undefined;
   percent = 0;
   productCodes!: Observable<string[]>;
-
-  hoveringOver(value: number): void {
-    this.overStar = value;
-    this.percent = (value / this.max) * 100;
-  }
 
   defaultIProduct: IProduct = {
     productId:100,

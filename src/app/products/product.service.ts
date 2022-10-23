@@ -9,7 +9,8 @@ import {NgForm} from "@angular/forms";
   providedIn: 'root'
 })
 export class ProductService {
-  public productUrl = 'http://localhost:3000/api/v1/webapp/getAllProducts';
+  public productUrl ='http://localhost:3000/api/v1/webapp/getProduct/';
+  public productsUrl = 'http://localhost:3000/api/v1/webapp/getAllProducts';
   public postProductUrl = 'http://localhost:3000/api/v1/webapp/saveProduct';
 
   constructor(private http: HttpClient) { }
@@ -25,8 +26,14 @@ export class ProductService {
     return of(['Tools', 'Utilities','Grocery','Others'])
   }
 
+  getProduct(id:number): Observable<IProduct> {
+    return this.http.get<IProduct>(this.productUrl+id, this.httpOptions).pipe(tap(data => console.log('All_getProduct', JSON.stringify(data))),
+        catchError(this.handleError)
+    )
+  }
+
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.productUrl, this.httpOptions).pipe(tap(data => console.log('All', JSON.stringify(data))),
+    return this.http.get<IProduct[]>(this.productsUrl, this.httpOptions).pipe(tap(data => console.log('All_getProducts', JSON.stringify(data))),
       catchError(this.handleError)
     )
   }

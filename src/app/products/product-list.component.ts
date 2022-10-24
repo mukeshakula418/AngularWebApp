@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this._listFilter = value;
     console.log('In setter:', value);
     this.filteredProducts = this.performFilter(value);
-    console.log('this.filteredProducts::::::',this.filteredProducts)
+    // console.log('this.filteredProducts::::::',this.filteredProducts)
   }
 
   filteredProducts: IProduct[] = [];
@@ -34,7 +34,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
-    console.log("filerBy::", filterBy)
+    // console.log("filerBy::", filterBy)
     return this.products.filter((product: IProduct) =>
       product.productName.toLocaleLowerCase().includes(filterBy));
     // console.log('####',this.products.filter((product: IProduct) =>

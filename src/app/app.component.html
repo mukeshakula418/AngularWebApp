@@ -1,6 +1,17 @@
-<div style="text-align:center">
-  <h1>
-    TaDa! Welcome to {{title}}!!
-  </h1>
-  ... Starter Files ...
-</div>
+<header>
+  <nav class='navbar navbar-expand navbar-light bg-light'>
+    <a class='navbar-brand'>{{pageTitle}}</a>
+    <ul class='nav'>
+      <li><a class='nav-link' routerLink='/welcome'>Home</a></li>
+      <li><a class='nav-link' routerLink='/products'>Product List</a></li>
+      <li><a class='nav-link' routerLink='/add-product'>Add Product</a></li>
+    </ul>
+    <form  class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </nav>
+  <div class='container'>
+    <router-outlet></router-outlet>
+  </div>
+</header>

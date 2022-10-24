@@ -7,7 +7,7 @@ div.card-header {
 }
 
 div.card {
-  margin-top: 10px
+  margin-top: 100px
 }
 
 .table {
@@ -15,8 +15,9 @@ div.card {
 }
 
 a {
-  text-decoration: none; 
+  text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
